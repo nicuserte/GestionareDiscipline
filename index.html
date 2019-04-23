@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Creare contract de studii</title>
+        <script src="Model/disciplina.js"></script>
+        <script src="Repository/repository.js"></script>
+        <script src="Services/service.js"></script>
+        <script src="UI.js"></script>
+    </head>
+    <body>
+        <script>
+            var repo=new Repository();
+            var srv=new Service(repo);
+            var ui=new UI(srv);
+        </script>
+        <h1>Creare contract de studii</h1>
+        Denumire: <input type="text" id="nume"><br>
+        Tip: <select id="tip">
+                <option value="Obligatorie">Obligatorie</option>
+                <option value="Optionala">Optionala</option>
+                <option value="Facultativa">Facultativa</option>
+            </select><br>
+        Numar ore pe saptamana: <input type="text" id="nrOre"><br>
+        <button onclick="ui.addDisciplina(document.getElementById('nume').value, 
+        document.getElementById('tip').value, document.getElementById('nrOre').value)">Adauga</button>
+        <button onclick="ui.updateDisciplina(document.getElementById('nume').value, 
+        document.getElementById('tip').value, document.getElementById('nrOre').value)">Actualizeaza disciplina existenta</button>
+        <button onclick="ui.resetTable()">Resetare tabel</button>
+        <table border="1" id="tabel_discipline">
+            <tr>
+                <th onclick="srv.sortTable(0)">Denumire</th>
+                <th onclick="srv.sortTable(1)">Tip</th>
+                <th onclick="srv.sortTable(2)">Nr ore pe saptamana</th>
+                <th></th>
+            </tr>
+        </table>
+        <script>
+            ui.resetTable();
+        </script>
+    </body>
+</html> 
